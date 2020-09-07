@@ -7,12 +7,25 @@
 <head>
     <meta name='viewport' content='width=device-width' />
     <title>RsvpForm</title>
+    <style>
+        .input-validation-error
+        {
+            color : #f00;
+            border : 1px solid #f00;
+        }
+        .field-validation-valid
+        {
+               display: none;         
+        }
+    </style>
 </head>
 <body>
+    @* <div asp-validation-summary="All"></div> *@
     <form asp-action='RsvpForm' method='post'>
         <div>
             <label asp-for='Name'>Your name:</label>
             <input asp-for='Name' />
+            @Html.ValidationMessageFor(model => model.Name, String.Empty, null)
             </div>
         <div>
             <label asp-for='Email'>Your email:</label>
@@ -21,11 +34,15 @@
         <div>
             <label asp-for='Phone'>Your phone:</label>
             <input asp-for='Phone' />
+            @Html.ValidationMessageFor(model => model.Phone, String.Empty, null)
+        </div>
+        <div>
+            <label asp-for='Age'>Your age:</label>
+            <input asp-for='Age' />
         </div>
         <div>
             <label>Will you attend?</label>
             <select asp-for='WillAttend'>
-                <option value=''>Choose an option</option>
                 <option value='true'>Yes, I'll be there</option>
                 <option value='false'>No, I can't come</option>
             </select>
